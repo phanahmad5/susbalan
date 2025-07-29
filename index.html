@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Absensi QR</title>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    input { padding: 10px; width: 300px; }
+    button { padding: 10px 20px; margin-top: 10px; }
+    #qrcode { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h2>Generate QR Code Absensi</h2>
+  <input type="text" id="nama" placeholder="Masukkan nama siswa">
+  <button onclick="generateQRCode()">Generate</button>
+  <div id="qrcode"></div>
+
+  <script>
+    function generateQRCode() {
+      const nama = document.getElementById("nama").value;
+      if (!nama) return alert("Masukkan nama siswa dulu!");
+
+      const url = `https://yourdomain.com/submit.html?nama=${encodeURIComponent(nama)}`;
+
+      const canvas = document.createElement("canvas");
+      QRCode.toCanvas(canvas, url, function (error) {
+        if (error) {
+          console.error(error);
+          return;
+        }
+        const qrcodeContainer = document.getElementById("qrcode");
+        qrcodeContainer.innerHTML = ''; // Hapus QR sebelumnya
+        qrcodeContainer.appendChild(canvas);
+      });
+    }
+  </script>
+</body>
+</html>
