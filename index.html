@@ -22,7 +22,7 @@
       const nama = document.getElementById("nama").value;
       if (!nama) return alert("Masukkan nama siswa dulu!");
 
-      const url = `https://yourdomain.com/submit.html?nama=${encodeURIComponent(nama)}`;
+      const url = `https://susbalan.vercel.app/submit.html?nama=${encodeURIComponent(nama)}`;
 
       const canvas = document.createElement("canvas");
       QRCode.toCanvas(canvas, url, function (error) {
